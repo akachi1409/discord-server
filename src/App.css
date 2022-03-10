@@ -1,0 +1,34 @@
+.wrapper {
+  width: 100%;
+}
+
+@media screen and (max-width: 1280px){
+  .wrapper {
+      padding: 0;
+  }
+}
+
+img, picture {
+  max-width: 100%;
+  display: block;
+}
+
+img, video {
+  height: auto;
+  max-width: 100%;
+}
+
+.default-page {
+  background-color: #fff;
+  padding-top: 73px;
+  min-height: 740px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Poppins",sans-serif;
+}
+
+.default-page h3 {
+  margin-top: 60px;
+}
+
