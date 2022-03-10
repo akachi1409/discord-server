@@ -29,12 +29,14 @@
     "web3-eth-contract": "^1.5.2"
   },
   "scripts": {
-    "start": "serve -s build",
-    "build": "react-scripts build",
-    "test": "craco start",
+    "start": "node server.js",
+    "dev": "craco start",
+    "build": "craco build",
+    "test": "craco test",
     "eject": "react-scripts eject",
-    "heroku-postbuild": "npm run build",
-    "deploy": "gh-pages -d build"
+    "lint": "eslint src/**/*.js",
+    "lint:fix": "eslint --fix src/**/*.js",
+    "format": "prettier --write \"**/*.+(js|jsx|json|css|md)\""
   },
   "eslintConfig": {
     "extends": [
