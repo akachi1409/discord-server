@@ -1,7 +1,9 @@
 import React from "react";
 import "./sidebar.css";
 
+import { useSelector } from "react-redux";
 function Sidebar() {
+  const account = useSelector((state) => state.account)
   return (
     <div>
       <div className="hidden md:flex md:w-64 md:flex-col md:fixed md:inset-y-0">
@@ -106,9 +108,9 @@ function Sidebar() {
                 </div>
                 <div className="ml-3">
                   <div className="text-sm font-medium text-white">
-                    trusteddev1325
+                    {account.account}
                   </div>
-                  <p className="text-xs font-medium text-white">#4652</p>
+                  {/* <p className="text-xs font-medium text-white">#4652</p> */}
                 </div>
                 <div className="h-6 w-6 text-white inline ml-1 mt-1 cursor-pointer ml-10 logout-icon">
                   <svg

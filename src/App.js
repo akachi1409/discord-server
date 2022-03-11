@@ -1,18 +1,37 @@
-import './App.css';
+import "./App.css";
+import React from "react";
+import { Switch, BrowserRouter as Router } from "react-router-dom";
 
-import { BrowserRouter as Router,Routes, Route } from 'react-router-dom';
-import Login from "./page/login/login";
-import Account from "./page/account/account";
+// Import Routes
+import { authProtectedRoutes, publicRoutes } from "./routes/";
+import AppRoute from "./routes/route";
+
 function App() {
   return (
-    <Router>
-      <div>
-        <Routes>
-          <Route exact path='/login' element={<Login/>}></Route>
-          <Route exact path='/account' element={<Account/>}></Route>
-        </Routes>
-      </div>
-    </Router>
+    <React.Fragment>
+      <Router>
+        <Switch>
+        {authProtectedRoutes.map((route, idx) => (
+            <AppRoute
+              path={route.path}
+              component={route.component}
+              key={idx}
+              isAuthProtected={true}
+            />
+          ))}
+          {publicRoutes.map((route, idx) => (
+            <AppRoute
+              path={route.path}
+              component={route.component}
+              key={idx}
+              isAuthProtected={false}
+            />
+          ))}
+
+          
+        </Switch>
+      </Router>
+    </React.Fragment>
   );
 }
 

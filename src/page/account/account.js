@@ -1,8 +1,20 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./account.css";
 
 import Sidebar from "../../components/sidebar/sidebar";
 function Account() {
+  const [firstLoad, setFirstLoad] = useState(true);
+  if (firstLoad) {
+    setFirstLoad(false);
+  }
+  useEffect(() => {
+    const fragment = new URLSearchParams(window.location.hash.slice(1));
+    const [accessToken, tokenType] = [
+      fragment.get("access_token"),
+      fragment.get("token_type"),
+    ];
+    console.log(accessToken, tokenType);
+  }, [firstLoad]);
   return (
     <div>
       <div>
