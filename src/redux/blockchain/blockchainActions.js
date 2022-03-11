@@ -48,28 +48,15 @@ export const connect = () => {
         const networkId = await ethereum.request({
           method: "net_version",
         });
-        const test = await web3.eth.getBalance(accounts[0]);
-        const balance = test/1000000000000000000
         // balance = web3.toDecimal(balance)
-        console.log("balance:", balance);
         // const NetworkData = await SmartContract.networks[networkId];
-        if (networkId == 56) { // IMPORTANT. ONCE YOUR CONTRACT IS ON THE MAIN NET, SWITCH THIS NUMBER TO 1.
-          const SmartContractObj = new Web3EthContract(
-            SmartContract,
-            "0xF86fe65531ba453457859F7227127e2Bc9efF3Bd" // **IMPORTANT** PASTE CONTRACT ADDRESS HERE
-          );
-          const NftContractObj = new Web3EthContract(
-            NftContract,
-            "0x8a0C542bA7bBBab7cF3551fFcc546CdC5362d2a1"
-          )
+        if (networkId == 1313161554) { // IMPORTANT. ONCE YOUR CONTRACT IS ON THE MAIN NET, SWITCH THIS NUMBER TO 1.
+          console.log("-----------", accounts[0])
           
           dispatch(
             connectSuccess({
               account: accounts[0],
-              smartContract: SmartContractObj,
               web3: web3,
-              balance: balance,
-              NftContract: NftContractObj
             })
           );
           // Add listeners start

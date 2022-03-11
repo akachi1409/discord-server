@@ -20,10 +20,9 @@ const blockchainReducer = (state = initialState, action) => {
         ...state,
         loading: false,
         account: action.payload.account,
-        smartContract: action.payload.smartContract,
+        // smartContract: action.payload.smartContract,
         web3: action.payload.web3,
-        balance: action.payload.balance,
-        NftContract: action.payload.NftContract,
+        // NftContract: action.payload.NftContract,
       };
     case "CONNECTION_FAILED":
       return {

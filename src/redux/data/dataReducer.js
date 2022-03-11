@@ -1,12 +1,8 @@
 const initialState = {
   loading: false,
   name: "",
-  totalSupply: 0,
-  tokenIds:[],
   error: false,
   errorMsg: "",
-  tokenData:[],
-  tokenUrls:[],
 };
 
 const dataReducer = (state = initialState, action) => {
@@ -22,11 +18,6 @@ const dataReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
-        name: action.payload.name,
-        totalSupply: action.payload.totalSupply,
-        tokenIds: action.payload.tokenIds,
-        tokenData: action.payload.tokenData,
-        tokenUrls: action.payload.tokenUrls,
         error: false,
         errorMsg: "",
       };
