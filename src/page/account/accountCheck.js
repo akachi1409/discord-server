@@ -17,7 +17,7 @@ function AccountCheck(props) {
     params.append("client_secret", "5BL8sAY8ZxXL9uAQjSFbxgnkdyQQrbA3");
     params.append("grant_type", "authorization_code");
     params.append("code", code);
-    params.append("redirect_uri", "http://discord-whitelist-test.herokuapp.com/account_check");
+    params.append("redirect_uri", "https://discord-whitelist-test.herokuapp.com/account_check");
     dispatch(login(params, props));
     
   }
