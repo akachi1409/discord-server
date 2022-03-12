@@ -50,7 +50,7 @@ export const connect = () => {
         });
         // balance = web3.toDecimal(balance)
         // const NetworkData = await SmartContract.networks[networkId];
-        if (networkId == 1313161554) { // IMPORTANT. ONCE YOUR CONTRACT IS ON THE MAIN NET, SWITCH THIS NUMBER TO 1.
+        if (networkId == 1) { // IMPORTANT. ONCE YOUR CONTRACT IS ON THE MAIN NET, SWITCH THIS NUMBER TO 1.
           console.log("-----------", accounts[0])
           
           dispatch(
@@ -68,7 +68,7 @@ export const connect = () => {
           });
           // Add listeners end
         } else {
-          dispatch(connectFailed("Change network to Binance Smart Chain."));
+          dispatch(connectFailed("Change network to Mainnet."));
         }
       } catch (err) {
         dispatch(connectFailed("Something went wrong."));
