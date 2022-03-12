@@ -46,7 +46,7 @@ function Account() {
           <div className="flex flex-col py-6">
             <div className="mx-auto px-4 sm:px-6 md:px-8">Account</div>
             <div>
-              {blockchain.account == "null" ?(
+              {blockchain.account == null ?(
                 <button
                   className="wallet-adapter-button wallet-adapter-button-trigger"
                   tabIndex="0"
