@@ -29,7 +29,7 @@ function Login() {
         <div className="mt-16 sm:mx-auto sm:max-w-md justify-center">
           <div className="flex justify-center items-center">
             <button className="w-48 flex justify-center py-2 px-4 rounded-md font-medium text-white login-btn wallet-adapter-button-trigger">
-              <a href="https://discord.com/api/oauth2/authorize?client_id=951522291894870067&redirect_uri=https%3A%2F%2Fdiscord-whitelist-test.herokuapp.com%2Faccount_check&response_type=code&scope=identify">
+              <a href="https://discord.com/api/oauth2/authorize?client_id=951522291894870067&redirect_uri=http%3A%2F%2F10.10.13.98%3A3000%2Faccount_check&response_type=code&scope=identify">
               Login with Discord  </a>
             </button>
           </div>

@@ -65,9 +65,6 @@ function Account() {
                   tabindex="0"
                   type="button"
                 >
-                  {/* <i class="wallet-adapter-button-start-icon">
-                    <img src="" alt="Sollet (Extension) icon" />
-                  </i> */}
                   {blockchain.account}
                 </button>
               )}
@@ -76,9 +73,6 @@ function Account() {
                   <div className="w-1/2 ml-10 overflow-ellipsis"></div>
                 </div>
                 <div>
-                  {/* <div className="flex justify-center items-center m-10 text-xl">
-                    Linked Wallets
-                  </div> */}
                 </div>
               </div>
             </div>

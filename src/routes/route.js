@@ -6,23 +6,32 @@ const AppRoute = ({
 	isAuthProtected,
 	...rest
 }) => {
-	const account = useSelector((state)=>state.account)
-	console.log("account", account.account)
 	return(
 		<Route
 			{...rest}
 			
-			render={props => {console.log("test", account.authorized, "props:", props.location)
+			render={props => {
+				switch(props.location.pathname){
+					
+					case "/dashboard/mine" : 
+						localStorage.setItem("sidebar", "dashboard-mine");
+						break;
+					case "/dashboard/other" : 
+						localStorage.setItem("sidebar", "dashboard-other");
+						break;
+					case "/account":
+						console.log(";;;;;")
+						localStorage.setItem("sidebar", "account");
+						break;
+				}
 				if (props.location=="/accont_check"){
-					console.log("here")
 					return (
 						<div>
 							<Component {...props} />
 						</div>
 					);
 				}
-				if (isAuthProtected && !account.authorized) {
-					console.log("there")
+				if (isAuthProtected && !localStorage.getItem("authUser")) {
 					return (
 						<Redirect to={{ pathname: "/login", state: { from: props.location } }} />
 					);

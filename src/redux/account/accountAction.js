@@ -28,14 +28,12 @@ const updateAccountRequest = (payload) => {
 };
 
 export const login = (data, props) => {
-    console.log("data:", data);
   return async (dispatch) => {
     dispatch(loginRequest);
     try{
         axios
       .post("https://discordapp.com/api/oauth2/token", data , {  headers:{'content-type': 'application/x-www-form-urlencoded'}})
       .then((response) => {
-        console.log("response", response);
         axios.get("https://discordapp.com/api/users/@me", { headers:{authorization: `${response.data.token_type} ${response.data.access_token}`}})
             .then(
                 userResponse =>{
@@ -46,6 +44,7 @@ export const login = (data, props) => {
                             account: username
                         })
                     )
+                    localStorage.setItem("authUser", username);
                     props.history.push("/account")
                 }
             )

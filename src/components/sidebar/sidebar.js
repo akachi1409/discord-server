@@ -1,9 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import "./sidebar.css";
 
 import { useSelector } from "react-redux";
 function Sidebar() {
-  const account = useSelector((state) => state.account)
+  const account = useSelector((state) => state.account);
+  // const [firstLoad, setFirstLoad] = useState(true);
+  // if (firstLoad) {
+  //   setFirstLoad(false);
+  //   console.log("---sidebar:", localStorage.getItem("sidebar"));
+  // }
+
   return (
     <div>
       <div className="hidden md:flex md:w-64 md:flex-col md:fixed md:inset-y-0">
@@ -16,24 +22,46 @@ function Sidebar() {
               Powered by Blocksmith Labs
             </div>
             <nav className="mt-10 flex-1 px-2 space-y-1">
-              <div className="text-gray-300 hover:bg-gray-700 mt-2 hover:text-white group flex items-center px-2 py-2 mt-2 text-sm font-medium rounded-md">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  aria-hidden="true"
-                  className="text-gray-400 group-hover:text-gray-300 mr-3 flex-shrink-0 h-4 w-4"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
-                  ></path>
-                </svg>
-                <a href="/">Dashboard</a>
-              </div>
+              {localStorage.getItem("sidebar") === "dashboard-mine" || localStorage.getItem("sidebar") === "dashboard-other"? (
+                <div className="bg-gray-900 text-white group flex items-center px-2 py-2 mt-2 text-sm font-medium rounded-md">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    aria-hidden="true"
+                    className="text-gray-400 group-hover:text-gray-300 mr-3 flex-shrink-0 h-4 w-4"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
+                    ></path>
+                  </svg>
+                  <a href="/dashboard/mine">Dashboard</a>
+                </div>
+              ) : (
+                <div className="text-gray-300 hover:bg-gray-700 mt-2 hover:text-white group flex items-center px-2 py-2 mt-2 text-sm font-medium rounded-md">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    aria-hidden="true"
+                    className="text-gray-400 group-hover:text-gray-300 mr-3 flex-shrink-0 h-4 w-4"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
+                    ></path>
+                  </svg>
+                  <a href="/dashboard/mine">Dashboard</a>
+                </div>
+              )}
+
               <div className="text-gray-300 hover:bg-gray-700 mt-2 hover:text-white group flex items-center px-2 py-2 mt-2 text-sm font-medium rounded-md">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -52,24 +80,45 @@ function Sidebar() {
                 </svg>
                 <a href="/calendar">Calendar</a>
               </div>
-              <div className="bg-gray-900 text-white group flex items-center px-2 py-2 mt-2 text-sm font-medium rounded-md">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  aria-hidden="true"
-                  className="text-gray-300 mr-3 flex-shrink-0 h-4 w-4"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-                  ></path>
-                </svg>
-                <a href="/account">Account</a>
-              </div>
+              {localStorage.getItem("sidebar") === "account" ? (
+                <div className="bg-gray-900 text-white group flex items-center px-2 py-2 mt-2 text-sm font-medium rounded-md">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    aria-hidden="true"
+                    className="text-gray-300 mr-3 flex-shrink-0 h-4 w-4"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                    ></path>
+                  </svg>
+                  <a href="/account">Account</a>
+                </div>
+              ) : (
+                <div className="text-gray-300 hover:bg-gray-700 mt-2 hover:text-white group flex items-center px-2 py-2 mt-2 text-sm font-medium rounded-md">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    aria-hidden="true"
+                    className="text-gray-300 mr-3 flex-shrink-0 h-4 w-4"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                    ></path>
+                  </svg>
+                  <a href="/account">Account</a>
+                </div>
+              )}
             </nav>
           </div>
           <div className="flex ml-5 items-center text-white text-xs">
