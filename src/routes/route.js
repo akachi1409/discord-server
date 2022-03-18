@@ -20,7 +20,6 @@ const AppRoute = ({
 						localStorage.setItem("sidebar", "dashboard-other");
 						break;
 					case "/account":
-						console.log(";;;;;")
 						localStorage.setItem("sidebar", "account");
 						break;
 				}

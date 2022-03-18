@@ -59,6 +59,7 @@ export const connect = () => {
               web3: web3,
             })
           );
+          localStorage.setItem("account", accounts[0])
           // Add listeners start
           ethereum.on("accountsChanged", (accounts) => {
             dispatch(updateAccount(accounts[0]));

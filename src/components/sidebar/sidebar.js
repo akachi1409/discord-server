@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 import "./sidebar.css";
-
+import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-function Sidebar() {
+import { logout } from "../../redux/account/accountAction";
+function Sidebar(props) {
   const account = useSelector((state) => state.account);
-  // const [firstLoad, setFirstLoad] = useState(true);
-  // if (firstLoad) {
-  //   setFirstLoad(false);
-  //   console.log("---sidebar:", localStorage.getItem("sidebar"));
-  // }
+  const dispatch = useDispatch();
 
+  // const onDashboard = () =>{
+  //   props.history.push("/dashboard/mine")
+  // }
   return (
     <div>
       <div className="hidden md:flex md:w-64 md:flex-col md:fixed md:inset-y-0">
@@ -148,20 +148,20 @@ function Sidebar() {
           <div className="flex-shrink-0 flex bg-gray-800 dark:bg-gray-800 p-4">
             <a href="#" className="flex-shrink-0 w-full group block">
               <div className="flex items-center">
-                <div>
+                {/* <div>
                   <img
                     className="inline-block h-10 w-10 rounded-full"
                     src="https://cdn.discordapp.com/avatars/951451747220594768/null.png"
                     alt=""
                   />
-                </div>
+                </div> */}
                 <div className="ml-3">
                   <div className="text-sm font-medium text-white">
-                    {account.account}
+                    {localStorage.getItem("authUser")}
                   </div>
                   {/* <p className="text-xs font-medium text-white">#4652</p> */}
                 </div>
-                <div className="h-6 w-6 text-white inline ml-1 mt-1 cursor-pointer ml-10 logout-icon">
+                <div className="h-6 w-6 text-white inline ml-1 mt-1 cursor-pointer ml-10 logout-icon cursor-pointer" onClick={dispatch(logout)}>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"

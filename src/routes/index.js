@@ -6,6 +6,7 @@ import Account from "../page/account/account";
 import AccountCheck from "../page/account/accountCheck"
 import Dashboard from "../page/dashboard/dashboard"
 import Other from "../page/dashboard/other"
+import Whitelist from "../page/dashboard/whitelist"
 const authProtectedRoutes = [
     {
         path:'/account', component: Account
@@ -15,6 +16,9 @@ const authProtectedRoutes = [
     }, 
     {
         path:'/dashboard/other', component: Other
+    }, 
+    {
+        path:'/dashboard/whitelist', component: Whitelist
     }
 ];
 const publicRoutes = [

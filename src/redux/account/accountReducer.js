@@ -2,6 +2,8 @@ const initialState = {
   loading: false,
   account: "null",
   authorized: false,
+  isMember:false,
+  role:"",
   errorMsg: "",
 };
 
@@ -12,12 +14,41 @@ const accountReducer = (state = initialState, action) => {
         ...initialState,
         loading: true,
       };
+    case "LOGOUT_REQUEST":
+      return{
+        ...initialState,
+        loading: true,
+      }
+    case "ADD_ROLE_REQUEST":
+      return{
+        ...initialState,
+        loading: true,
+      }
+    case "ADD_ROLE_SUCCESS":
+      return{
+        ...initialState,
+        loading: false,
+        role:action.payload.role
+      }
+    case "ADD_WHITELIST_REQUEST":
+      return{
+        ...initialState,
+        loading: true,
+      }
+    case "ADD_WHITELIST_SUCCESS":
+      return{
+        ...initialState,
+        role:action.payload.role,
+        loading: false,
+      }
+    
     case "LOGIN_SUCCESS":
-        console.log("reducer", action)
       return {
         ...state,
         loading: false,
         account: action.payload.account,
+        isMember:action.payload.isMember,
+        role: action.payload.role,
         authorized: true,
       };
     case "LOGIN_FAILED":
