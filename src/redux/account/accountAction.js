@@ -68,7 +68,7 @@ export const addWhitelist = (props) =>{
     var username = localStorage.getItem("authUser")
     var account = localStorage.getItem("account")
     try{
-      axios.post("http://34.205.146.173:3000//member/addwhitelist", {
+      axios.post("http://34.205.146.173:3000/member/addwhitelist", {
         user:username, account:account
       }).then((res)=>{
         if (res.data.result){
@@ -96,7 +96,7 @@ export const addRole = () =>{
     var username = localStorage.getItem("authUser")
     console.log(username)
     try{
-      axios.post("http://34.205.146.173:3000//member/add_role",{
+      axios.post("http://34.205.146.173:3000/member/add_role",{
         user: username
       })
       .then((res)=>{
@@ -148,7 +148,7 @@ export const login = (data, props) => {
               console.log("userResponse", userResponse);
               let username = `${userResponse.data.username}#${userResponse.data.discriminator}`;
               axios
-                .post("http://34.205.146.173:3000//member/find_member", {
+                .post("http://34.205.146.173:3000/member/find_member", {
                   user: username,
                 })
                 .then((res) => {
