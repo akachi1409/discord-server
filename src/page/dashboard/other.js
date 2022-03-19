@@ -151,6 +151,7 @@ function Other() {
                           <div className="-ml-px w-0 flex-1 flex">
                             <a
                               href="https://discord.gg/WDgqrHHF"
+                              target="_blank" rel="noreferrer noopener"
                               className="relative -mr-px w-0 flex-1 inline-flex items-center justify-center py-4 text-sm hover:text-gray-100 border border-transparent rounded-bl-lg hover:text-gray-500"
                             >
                               <div className="h-6 w-6" aria-hidden="true">
