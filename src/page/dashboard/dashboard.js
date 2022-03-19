@@ -1,11 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import Sidebar from "../../components/sidebar/sidebar";
+import { checkMember } from "../../redux/account/accountAction"
+import { useDispatch, useSelector } from "react-redux";
 import "./dashboard.css";
 function Dashboard() {
   const [firstLoad, setFirstLoad] = useState(true);
   const [whitelisted, setWhitelisted] = useState(false);
   const [isMember, setIsMember] = useState(false);
+  const dispatch = useDispatch();
+  const account = useSelector((state) => state.account);
   const setRoleState = (roles) => {
     var flagW = false;
     roles.forEach((role) => {
@@ -17,6 +21,9 @@ function Dashboard() {
 
   if (firstLoad) {
     setFirstLoad(false);
+    dispatch(checkMember);
+  }
+  useEffect(() => {
     const _role = localStorage.getItem("role");
     const isConnected = localStorage.getItem("isMember");
     console.log(isConnected);
@@ -24,9 +31,8 @@ function Dashboard() {
       setIsMember(true);
     else
       setIsMember(false);
-
-    if (_role !== undefined) setRoleState(_role.split(","));
-  }
+      if (_role !== undefined) setRoleState(_role.split(","));
+  },[account])
   return (
     <div>
       <div>
@@ -131,6 +137,7 @@ function Dashboard() {
                       <div className="-ml-px w-0 flex-1 flex">
                         <a
                           href="https://discord.gg/WDgqrHHF"
+                          target="_blank" rel="noreferrer noopener"
                           className="relative -mr-px w-0 flex-1 inline-flex items-center justify-center py-4 text-sm hover:text-gray-100 border border-transparent rounded-bl-lg hover:text-gray-500"
                         >
                           <div className="h-6 w-6" aria-hidden="true">

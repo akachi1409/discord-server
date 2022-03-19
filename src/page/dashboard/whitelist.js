@@ -34,6 +34,9 @@ function Whitelist(props) {
   const addwhitelistF = () => {
     var account = localStorage.getItem("account");
     console.log("account", account);
+    if (!role){
+      notify("You need to get the certain role to be get whitelisted!")
+    }
     if (account == null) {
       notify("You should connect your wallet to get whitelisted!");
       return;

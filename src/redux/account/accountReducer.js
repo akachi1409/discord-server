@@ -19,6 +19,18 @@ const accountReducer = (state = initialState, action) => {
         ...initialState,
         loading: true,
       }
+    case "CHECK_MEMBER_REQUEST":
+      return{
+        ...initialState,
+        loading: true,
+      }
+    case "CHECK_MEMBER_SUCCESS":
+      return{
+        ...initialState,
+        loading: false,
+        isMember:action.payload.isMember,
+        role: action.payload.role,
+      }
     case "ADD_ROLE_REQUEST":
       return{
         ...initialState,

@@ -24,30 +24,43 @@ const logoutSuccess = () => {
     type: "LOGOUT_SUCCESS",
   };
 };
-const addRoleRequest =()=>{
-  return{
+const addRoleRequest = () => {
+  return {
     type: "ADD_ROLE_REQUEST",
-  }
-}
+  };
+};
 const addRoleSuccess = (payload) => {
-  return{
+  return {
     type: "ADD_ROLE_SUCCESS",
-    payload: payload
-  }
-}
+    payload: payload,
+  };
+};
 
-const addWhiteListRequest =()=>{
-  return{
+const addWhiteListRequest = () => {
+  return {
     type: "ADD_WHITELIST_REQUEST",
-  }
-}
+  };
+};
 
 const addWhiteListSuccess = (payload) => {
-  return{
+  return {
     type: "ADD_WHITELIST_SUCCESS",
     payload: payload,
-  }
-}
+  };
+};
+
+const checkMemberRequest = () => {
+  return {
+    type: "CHECK_MEMBER_REQUEST",
+  };
+};
+
+const checkMemberSuccess = (payload) => {
+  return {
+    type: "CHECK_MEMBER_SUCCESS",
+    payload: payload,
+  };
+};
 const loginFailed = (payload) => {
   return {
     type: "LOGIN_FAILED",
@@ -62,67 +75,102 @@ const updateAccountRequest = (payload) => {
   };
 };
 
-export const addWhitelist = (props) =>{
+export const checkMember = (data, props) => {
+  return async (dispatch) => {
+    dispatch(checkMemberRequest);
+    var username = data.user;
+    var isMember = false;
+    try{axios
+      .post("http://34.205.146.173:3000/member/find_member", {
+        user: username,
+      })
+      .then((res) => {
+        console.log("res", res);
+        if (res.data.isConnected) isMember = true;
+        else isMember = false;
+        console.log("isMember", isMember);
+        var state_role = res.data.role;
+        dispatch(
+          checkMemberSuccess({
+            isMember: isMember,
+            role: state_role,
+          })
+        );
+        localStorage.setItem("isMember", isMember);
+        localStorage.setItem("role", state_role);
+      });
+    } catch (err) {
+      dispatch(loginFailed("Error occured"));
+    }
+  };
+};
+export const addWhitelist = (props) => {
   return async (dispatch) => {
     dispatch(addWhiteListRequest);
-    var username = localStorage.getItem("authUser")
-    var account = localStorage.getItem("account")
-    try{
-      axios.post("http://34.205.146.173:3000/member/addwhitelist", {
-        user:username, account:account
-      }).then((res)=>{
-        if (res.data.result){
-          var state_role = res.data.role;
-          localStorage.setItem("role", state_role)
-          dispatch(addWhiteListSuccess({
-            role:state_role
-          }))
-          props.history.push("/dashboard/mine");
-        }else{
-          var state_role = res.data.role;
-          localStorage.setItem("role", state_role)
-          props.history.push("/dashboard/other");
-        }
-
-      })
-    }catch (err) {
+    var username = localStorage.getItem("authUser");
+    var account = localStorage.getItem("account");
+    try {
+      axios
+        .post("http://34.205.146.173:3000/member/addwhitelist", {
+          user: username,
+          account: account,
+        })
+        .then((res) => {
+          if (res.data.result) {
+            var state_role = res.data.role;
+            localStorage.setItem("role", state_role);
+            dispatch(
+              addWhiteListSuccess({
+                role: state_role,
+              })
+            );
+            props.history.push("/dashboard/mine");
+          } else {
+            var state_role = res.data.role;
+            localStorage.setItem("role", state_role);
+            props.history.push("/dashboard/other");
+          }
+        });
+    } catch (err) {
       dispatch(loginFailed("Error occured"));
     }
-  }
-}
-export const addRole = () =>{
-  return async(dispatch) =>{
+  };
+};
+export const addRole = () => {
+  return async (dispatch) => {
     dispatch(addRoleRequest);
-    var username = localStorage.getItem("authUser")
-    console.log(username)
-    try{
-      axios.post("http://34.205.146.173:3000/member/add_role",{
-        user: username
-      })
-      .then((res)=>{
-        console.log(res)
-        if (res.data.result){
-          localStorage.setItem('role','OG')
-          dispatch(addRoleSuccess({
-            role:'OG'
-          }))
-        }
-        
-      })
-    }catch (err) {
+    var username = localStorage.getItem("authUser");
+    console.log(username);
+    try {
+      axios
+        .post("http://34.205.146.173:3000/member/add_role", {
+          user: username,
+        })
+        .then((res) => {
+          console.log(res);
+          if (res.data.result) {
+            localStorage.setItem("role", "OG");
+            dispatch(
+              addRoleSuccess({
+                role: "OG",
+              })
+            );
+          }
+        });
+    } catch (err) {
       dispatch(loginFailed("Error occured"));
     }
-  }
-}
+  };
+};
 export const logout = (props) => {
   return async (dispatch) => {
     dispatch(logoutRequest);
     try {
       localStorage.removeItem("authUser");
-      localStorage.removeItem('isMember');
-      localStorage.removeItem('role')
+      localStorage.removeItem("isMember");
+      localStorage.removeItem("role");
       props.history.push("/");
-      dispatch(logoutSuccess)
+      dispatch(logoutSuccess);
     } catch (err) {
       dispatch(loginFailed("Error occured"));
     }
@@ -161,12 +209,12 @@ export const login = (data, props) => {
                     loginSuccess({
                       account: username,
                       isMember: isMember,
-                      role: state_role
+                      role: state_role,
                     })
                   );
                   localStorage.setItem("authUser", username);
                   localStorage.setItem("isMember", isMember);
-                  localStorage.setItem("role", state_role)
+                  localStorage.setItem("role", state_role);
                   props.history.push("/account");
                 });
             });

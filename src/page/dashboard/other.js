@@ -1,12 +1,16 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 
 
 import Sidebar from "../../components/sidebar/sidebar";
+import { checkMember } from "../../redux/account/accountAction"
+import { useDispatch, useSelector } from "react-redux";
 import "./other.css";
 function Other() {
   const [firstLoad, setFirstLoad] = useState(true);
   const [whitelisted, setWhitelisted] = useState(false);
   const [isMember, setIsMember] = useState(false);
+  const dispatch = useDispatch();
+  const account = useSelector((state) => state.account);
   const setRoleState = (roles) => {
     var flagW = false;
     roles.forEach((role) => {
@@ -18,6 +22,9 @@ function Other() {
 
   if (firstLoad) {
     setFirstLoad(false);
+    dispatch(checkMember);
+  }
+  useEffect(() => {
     const _role = localStorage.getItem("role");
     const isConnected = localStorage.getItem("isMember");
     console.log(isConnected);
@@ -25,8 +32,8 @@ function Other() {
       setIsMember(true);
     else
       setIsMember(false);
-    if (_role !== undefined) setRoleState(_role.split(","));
-  }
+      if (_role !== undefined) setRoleState(_role.split(","));
+  },[account])
   return (
     <div>
       <div>
@@ -65,6 +72,7 @@ function Other() {
                       </a>
                       <a
                         href="/dashboard/other"
+                        target="_blank" rel="noreferrer noopener"
                         className="border-indigo-500 text-indigo-600 dark:text-indigo-300 whitespace-nowrap flex py-4 px-1 border-b-2 font-medium text-sm"
                         aria-current="page"
                       >
