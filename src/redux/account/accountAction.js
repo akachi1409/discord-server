@@ -75,14 +75,13 @@ const updateAccountRequest = (payload) => {
   };
 };
 
-export const checkMember = (data, props) => {
+export const checkMember = (user) => {
   return async (dispatch) => {
     dispatch(checkMemberRequest);
-    var username = data.user;
     var isMember = false;
     try{axios
       .post("http://34.205.146.173:3000/member/find_member", {
-        user: username,
+        user: user,
       })
       .then((res) => {
         console.log("res", res);

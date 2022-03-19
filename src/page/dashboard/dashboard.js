@@ -21,7 +21,8 @@ function Dashboard() {
 
   if (firstLoad) {
     setFirstLoad(false);
-    dispatch(checkMember);
+    const user = localStorage.getItem("authUser");
+    dispatch(checkMember(user));
   }
   useEffect(() => {
     const _role = localStorage.getItem("role");
