@@ -4,7 +4,7 @@ import "./account.css";
 import Sidebar from "../../components/sidebar/sidebar";
 
 import { fetchData } from "../../redux/data/dataActions";
-import { connect, connectNear } from "../../redux/blockchain/blockchainActions";
+import { connect, connectNear, disconnect } from "../../redux/blockchain/blockchainActions";
 import { useDispatch, useSelector } from "react-redux";
 
 import { toast, ToastContainer } from "react-toastify";
@@ -60,8 +60,13 @@ function Account() {
                   className="wallet-adapter-button wallet-adapter-button-trigger"
                   tabIndex="0"
                   type="button"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    dispatch(disconnect());
+                    getData();
+                  }}
                 >
-                  {blockchain.account}
+                  Disconnect Metamask Wallet
                 </button>
               )}
               <button

@@ -18,6 +18,25 @@ const connectSuccess = (payload) => {
   };
 };
 
+const disconnectRequest = () => {
+  return {
+    type:"DISCONNECTION_REQUEST"
+  }
+}
+
+const disconnectSuccess = (payload) => {
+  return{
+    type:"DISCONNECTION_SUCCESS",
+    payload: payload
+  }
+}
+
+const disconnectFailed = (payload) => {
+  return{
+    type:"DISCONNECTION_FAILED",
+    payload: payload
+  }
+}
 const connectNearRequest = () => {
   return {
     type: "CONNECTION_NEAR_REQUEST",
@@ -68,6 +87,24 @@ export const connectNear = () => {
     console.log("wallet", wallet);
   };
 };
+
+export const disconnect = () =>{
+  return async (dispatch) => {
+    dispatch(disconnectRequest());
+    try{
+      dispatch(
+        disconnectSuccess({
+          account:[],
+          web3:null
+        })
+      )
+    }catch(e){
+      dispatch(
+        disconnectFailed("Something went wrong.")
+      )
+    }
+  }
+}
 export const connect = () => {
   return async (dispatch) => {
     dispatch(connectRequest());
@@ -83,8 +120,6 @@ export const connect = () => {
         const networkId = await ethereum.request({
           method: "net_version",
         });
-        // balance = web3.toDecimal(balance)
-        // const NetworkData = await SmartContract.networks[networkId];
         if (networkId == 1) {
           // IMPORTANT. ONCE YOUR CONTRACT IS ON THE MAIN NET, SWITCH THIS NUMBER TO 1.
           console.log("-----------", accounts[0]);
