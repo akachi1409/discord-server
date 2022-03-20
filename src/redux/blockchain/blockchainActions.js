@@ -47,12 +47,12 @@ const updateAccountRequest = (payload) => {
 
 export const connectNear = () => {
   return async (dispatch) => {
-    dispatch(connectNear());
+    dispatch(connectNearRequest());
     const { connect, keyStores, WalletConnection } = nearAPI;
 
     const config = {
       networkId: "testnet",
-      // keyStore: new keyStores.BrowserLocalStorageKeyStore(),
+      keyStore: new keyStores.BrowserLocalStorageKeyStore(),
       nodeUrl: "https://rpc.testnet.near.org",
       walletUrl: "https://wallet.testnet.near.org",
       helperUrl: "https://helper.testnet.near.org",
