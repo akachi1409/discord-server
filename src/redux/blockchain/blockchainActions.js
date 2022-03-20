@@ -64,6 +64,7 @@ export const connectNear = () => {
 
     // create wallet connection
     const wallet = new WalletConnection(near);
+    if(!wallet.isSingnedIn()) return wallet.requestSignIn()
     console.log("wallet", wallet);
   };
 };
