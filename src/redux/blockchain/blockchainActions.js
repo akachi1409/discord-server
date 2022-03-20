@@ -86,7 +86,7 @@ export const connectNear = () => {
     // Initializing Wallet based Account. It can work with NEAR TestNet wallet that
     // is hosted at https://wallet.testnet.near.org
     window.walletAccount = new nearAPI.WalletAccount(window.near);
-
+    console.log('wallet', window.walletAccount);
     // Getting the Account ID. If unauthorized yet, it's just empty string.
     window.accountId = window.walletAccount.getAccountId();
 
@@ -100,6 +100,15 @@ export const connectNear = () => {
       // Sender is the account ID to initialize transactions.
       sender: window.accountId,
     });
+
+    window.walletAccount.requestSignIn(
+      // The contract name that would be authorized to be called by the user's account.
+      window.nearConfig.contractName,
+      // This is the app name. It can be anything.
+      'Who was the last person to say "Hi!"?',
+      // We can also provide URLs to redirect on success and failure.
+      // The current URL is used by default.
+    );
     // const config = {
     //   networkId: "testnet",
     //   keyStore: new keyStores.BrowserLocalStorageKeyStore(),
