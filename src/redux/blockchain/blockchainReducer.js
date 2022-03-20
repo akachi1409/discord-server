@@ -1,11 +1,8 @@
 const initialState = {
   loading: false,
   account: null,
-  smartContract: null,
   web3: null,
-  balance:0,
   errorMsg: "",
-  NftContract: null
 };
 
 const blockchainReducer = (state = initialState, action) => {
