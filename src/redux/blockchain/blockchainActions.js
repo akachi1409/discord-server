@@ -94,7 +94,7 @@ export const disconnect = () =>{
     try{
       dispatch(
         disconnectSuccess({
-          account:[],
+          account:null,
           web3:null
         })
       )
