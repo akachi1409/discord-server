@@ -61,25 +61,6 @@ function Sidebar(props) {
                   <a href="/dashboard/mine">Dashboard</a>
                 </div>
               )}
-
-              <div className="text-gray-300 hover:bg-gray-700 mt-2 hover:text-white group flex items-center px-2 py-2 mt-2 text-sm font-medium rounded-md">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  aria-hidden="true"
-                  className="text-gray-400 group-hover:text-gray-300 mr-3 flex-shrink-0 h-4 w-4"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"
-                  ></path>
-                </svg>
-                <a href="/calendar">Calendar</a>
-              </div>
               {localStorage.getItem("sidebar") === "account" ? (
                 <div className="bg-gray-900 text-white group flex items-center px-2 py-2 mt-2 text-sm font-medium rounded-md">
                   <svg

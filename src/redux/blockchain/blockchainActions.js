@@ -1,8 +1,7 @@
 // constants
 import Web3EthContract from "web3-eth-contract";
 import Web3 from "web3";
-import SmartContract from "../../contracts/Doodlenauts.json";
-import NftContract from "../../contracts/NftContract.json";
+import * as nearAPI from "near-api-js";
 // log
 import { fetchData } from "../data/dataActions";
 
@@ -15,6 +14,19 @@ const connectRequest = () => {
 const connectSuccess = (payload) => {
   return {
     type: "CONNECTION_SUCCESS",
+    payload: payload,
+  };
+};
+
+const connectNearRequest = () => {
+  return {
+    type: "CONNECTION_NEAR_REQUEST",
+  };
+};
+
+const connectionNearSuccess = (payload) => {
+  return {
+    type: "CONNECTION_NEAR_SUCCESS",
     payload: payload,
   };
 };
@@ -33,6 +45,28 @@ const updateAccountRequest = (payload) => {
   };
 };
 
+export const connectNear = () => {
+  return async (dispatch) => {
+    dispatch(connectNear());
+    const { connect, keyStores, WalletConnection } = nearAPI;
+
+    const config = {
+      networkId: "testnet",
+      // keyStore: new keyStores.BrowserLocalStorageKeyStore(),
+      nodeUrl: "https://rpc.testnet.near.org",
+      walletUrl: "https://wallet.testnet.near.org",
+      helperUrl: "https://helper.testnet.near.org",
+      explorerUrl: "https://explorer.testnet.near.org",
+    };
+
+    // connect to NEAR
+    const near = await connect(config);
+
+    // create wallet connection
+    const wallet = new WalletConnection(near);
+    console.log("wallet", wallet);
+  };
+};
 export const connect = () => {
   return async (dispatch) => {
     dispatch(connectRequest());
@@ -50,16 +84,17 @@ export const connect = () => {
         });
         // balance = web3.toDecimal(balance)
         // const NetworkData = await SmartContract.networks[networkId];
-        if (networkId == 1) { // IMPORTANT. ONCE YOUR CONTRACT IS ON THE MAIN NET, SWITCH THIS NUMBER TO 1.
-          console.log("-----------", accounts[0])
-          
+        if (networkId == 1) {
+          // IMPORTANT. ONCE YOUR CONTRACT IS ON THE MAIN NET, SWITCH THIS NUMBER TO 1.
+          console.log("-----------", accounts[0]);
+
           dispatch(
             connectSuccess({
               account: accounts[0],
               web3: web3,
             })
           );
-          localStorage.setItem("account", accounts[0])
+          localStorage.setItem("account", accounts[0]);
           // Add listeners start
           ethereum.on("accountsChanged", (accounts) => {
             dispatch(updateAccount(accounts[0]));
