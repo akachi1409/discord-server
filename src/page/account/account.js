@@ -4,7 +4,7 @@ import "./account.css";
 import Sidebar from "../../components/sidebar/sidebar";
 
 import { fetchData } from "../../redux/data/dataActions";
-import { connect, connectNear, disconnect } from "../../redux/blockchain/blockchainActions";
+import { connect, connectNear, disconnect, connectNearSuccessF } from "../../redux/blockchain/blockchainActions";
 import { useDispatch, useSelector } from "react-redux";
 
 import { toast, ToastContainer } from "react-toastify";
@@ -16,6 +16,12 @@ function Account() {
   const [firstLoad, setFirstLoad] = useState(true);
   if (firstLoad) {
     setFirstLoad(false);
+    const queryParams = new URLSearchParams(window.location.search);
+    // const accout_id = queryParams.get("account_id");
+    const public_key = queryParams.get("public_key");
+    if( public_key!= null){
+      dispatch(connectNearSuccessF(public_key))
+    }
   }
   const notify = () => toast(blockchain.account);
   const notifyErr = (err) => toast(err);

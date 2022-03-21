@@ -45,13 +45,18 @@ const connectNearRequest = () => {
   };
 };
 
-const connectionNearSuccess = (payload) => {
+const connectNearSuccess = (payload) => {
   return {
     type: "CONNECTION_NEAR_SUCCESS",
     payload: payload,
   };
 };
-
+const connectNearFailed = (payload) => {
+  return {
+    type: "CONNECTION_NEAR_FAILED",
+    payload: payload,
+  }
+}
 const connectFailed = (payload) => {
   return {
     type: "CONNECTION_FAILED",
@@ -89,63 +94,24 @@ export const connectNear = () => {
     console.log("wallet", wallet)
     wallet.requestSignIn(
       "example-contract.testnet", // contract requesting access
-      // "Example App", // optional
-      // "http://YOUR-URL.com/success", // optional
-      // "http://YOUR-URL.com/failure" // optional
     );
     console.log("wallet", wallet)
-    // // Initializing connection to the NEAR node.
-    // window.near = await nearAPI.connect(
-    //   Object.assign(
-    //     {
-    //       deps: {
-    //         keyStore: new nearAPI.keyStores.BrowserLocalStorageKeyStore(),
-    //       },
-    //     },
-    //     window.nearConfig
-    //   )
-    // );
-
-    // // Initializing Wallet based Account. It can work with NEAR TestNet wallet that
-    // // is hosted at https://wallet.testnet.near.org
-    // window.walletAccount = new nearAPI.WalletAccount(window.near);
-    // console.log("wallet", window.walletAccount);
-    // // Getting the Account ID. If unauthorized yet, it's just empty string.
-    // window.accountId = window.walletAccount.getAccountId();
-
-    // // Initializing our contract APIs by contract name and configuration.
-    // window.contract = await window.near.loadContract(
-    //   window.nearConfig.contractName,
-    //   {
-    //     // NOTE: This configuration only needed while NEAR is still in development
-    //     // View methods are read only. They don't modify the state, but usually return some value.
-    //     viewMethods: ["whoSaidHi"],
-    //     // Change methods can modify the state. But you don't receive the returned value when called.
-    //     changeMethods: ["sayHi"],
-    //     // Sender is the account ID to initialize transactions.
-    //     sender: window.accountId,
-    //   }
-    // );
-
-    // window.walletAccount.requestSignIn(
-    //   // The contract name that would be authorized to be called by the user's account.
-    //   window.nearConfig.contractName,
-    //   // This is the app name. It can be anything.
-    //   'Who was the last person to say "Hi!"?'
-    //   // We can also provide URLs to redirect on success and failure.
-    //   // The current URL is used by default.
-    // );
-    // const config = {
-    //   networkId: "testnet",
-    //   keyStore: new keyStores.BrowserLocalStorageKeyStore(),
-    //   nodeUrl: "https://rpc.testnet.near.org",
-    //   walletUrl: "https://wallet.testnet.near.org",
-    //   helperUrl: "https://helper.testnet.near.org",
-    //   explorerUrl: "https://explorer.testnet.near.org",
-    // };
+    
   };
 };
 
+export const connectNearSuccessF = (public_key) =>{
+  return async(dispatch) =>{
+    try{
+      console.log("public_key", public_key)
+      dispatch(connectNearSuccess({
+        public_key: public_key
+      }))
+    }catch (e) {
+      dispatch(connectNearFailed("Something went wrong"));
+    }
+  }
+}
 export const disconnect = () => {
   return async (dispatch) => {
     dispatch(disconnectRequest());

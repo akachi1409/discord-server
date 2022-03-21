@@ -2,6 +2,7 @@ const initialState = {
   loading: false,
   account: null,
   web3: null,
+  public_key: null,
   errorMsg: "",
 };
 
@@ -19,6 +20,23 @@ const blockchainReducer = (state = initialState, action) => {
         account: action.payload.account,
         web3: action.payload.web3,
       };
+    case "CONNECTION_NEAR_REQUEST":
+      return{
+        ...initialState,
+        loading: true,
+      }
+    case "CONNECTION_NEAR_SUCCESS":
+      return{
+        ...state,
+        loading: false,
+        public_key: action.payload.public_key
+      }
+    case "CONNECTION_NEAR_FAILED":
+      return{
+        ...initialState,
+        loading: false,
+        errorMsg: action.payload,
+      }
     case "DISCONNECTION_REQUEST":
       return{
         ...initialState,
