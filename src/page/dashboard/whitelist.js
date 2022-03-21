@@ -93,25 +93,24 @@ function Whitelist(props) {
                         Obtain the OG. Discord role
                       </h3>
                       <p className="mt-1 text-sm text-gray-500 overflow-hidden overflow-ellipsis">
-                        If you have this role in the discord server, you are
-                        automatically eligible for whitelist.
+                        You have to have "OG-" roles to get be whitelisted.
                       </p>
                     </div>
                     <div className="mt-3 sm:mt-0 sm:ml-4">
                       {!role ? (
                         <button
                           type="button"
-                          onClick={()=> addRoleF()}
-                          className="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                          // onClick={()=> addRoleF()}
+                          className="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-red-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 cursor-default"
                         >
-                          Verify
+                          Not Eligible
                         </button>
                       ) : (
                         <button
                           type="button"
-                          className="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-red-600  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 cursor-default"
+                          className="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white  bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 cursor-default"
                         >
-                          Verified
+                          Eligible
                         </button>
                       )}
                     </div>
@@ -132,14 +131,14 @@ function Whitelist(props) {
                           onClick={() => addwhitelistF()}
                           className="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                         >
-                          Verify
+                          Submit Wallet
                         </button>
                       ) : (
                         <button
                           type="button"
                           className="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-red-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 cursor-default"
                         >
-                          Verify
+                          Get Verified.
                         </button>
                       )}
                     </div>
