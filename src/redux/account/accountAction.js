@@ -79,25 +79,26 @@ export const checkMember = (user) => {
   return async (dispatch) => {
     dispatch(checkMemberRequest);
     var isMember = false;
-    try{axios
-      .post("http://34.205.146.173:3000/member/find_member", {
-        user: user,
-      })
-      .then((res) => {
-        console.log("res", res);
-        if (res.data.isConnected) isMember = true;
-        else isMember = false;
-        console.log("isMember", isMember);
-        var state_role = res.data.role;
-        dispatch(
-          checkMemberSuccess({
-            isMember: isMember,
-            role: state_role,
-          })
-        );
-        localStorage.setItem("isMember", isMember);
-        localStorage.setItem("role", state_role);
-      });
+    try {
+      axios
+        .post("http://34.205.146.173:3000/member/find_member", {
+          user: user,
+        })
+        .then((res) => {
+          console.log("res", res);
+          if (res.data.isConnected) isMember = true;
+          else isMember = false;
+          console.log("isMember", isMember);
+          var state_role = res.data.role;
+          dispatch(
+            checkMemberSuccess({
+              isMember: isMember,
+              role: state_role,
+            })
+          );
+          localStorage.setItem("isMember", isMember);
+          localStorage.setItem("role", state_role);
+        });
     } catch (err) {
       dispatch(loginFailed("Error occured"));
     }
@@ -108,30 +109,60 @@ export const addWhitelist = (props) => {
     dispatch(addWhiteListRequest);
     var username = localStorage.getItem("authUser");
     var account = localStorage.getItem("account");
-    try {
-      axios
-        .post("http://34.205.146.173:3000/member/addwhitelist", {
-          user: username,
-          account: account,
-        })
-        .then((res) => {
-          if (res.data.result) {
-            var state_role = res.data.role;
-            localStorage.setItem("role", state_role);
-            dispatch(
-              addWhiteListSuccess({
-                role: state_role,
-              })
-            );
-            props.history.push("/dashboard/mine");
-          } else {
-            var state_role = res.data.role;
-            localStorage.setItem("role", state_role);
-            props.history.push("/dashboard/other");
-          }
-        });
-    } catch (err) {
-      dispatch(loginFailed("Error occured"));
+    var public_key = localStorage.getItem("public_key");
+    if (account != null) {
+      try {
+        axios
+          .post("http://34.205.146.173:3000/member/addwhitelist", {
+            user: username,
+            account: account,
+          })
+          .then((res) => {
+            if (res.data.result) {
+              var state_role = res.data.role;
+              localStorage.setItem("role", state_role);
+              dispatch(
+                addWhiteListSuccess({
+                  role: state_role,
+                })
+              );
+              props.history.push("/dashboard/mine");
+            } else {
+              var state_role = res.data.role;
+              localStorage.setItem("role", state_role);
+              props.history.push("/dashboard/other");
+            }
+          });
+      } catch (err) {
+        dispatch(loginFailed("Error occured"));
+      }
+    }
+    if (public_key != null) {
+      try {
+        axios
+          .post("http://34.205.146.173:3000/member/addwhitelist", {
+            user: username,
+            account: public_key,
+          })
+          .then((res) => {
+            if (res.data.result) {
+              var state_role = res.data.role;
+              localStorage.setItem("role", state_role);
+              dispatch(
+                addWhiteListSuccess({
+                  role: state_role,
+                })
+              );
+              props.history.push("/dashboard/mine");
+            } else {
+              var state_role = res.data.role;
+              localStorage.setItem("role", state_role);
+              props.history.push("/dashboard/other");
+            }
+          });
+      } catch (err) {
+        dispatch(loginFailed("Error occured"));
+      }
     }
   };
 };

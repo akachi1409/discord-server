@@ -4,7 +4,12 @@ import "./account.css";
 import Sidebar from "../../components/sidebar/sidebar";
 
 import { fetchData } from "../../redux/data/dataActions";
-import { connect, connectNear, disconnect, connectNearSuccessF } from "../../redux/blockchain/blockchainActions";
+import {
+  connect,
+  connectNear,
+  disconnect,
+  connectNearSuccessF,
+} from "../../redux/blockchain/blockchainActions";
 import { useDispatch, useSelector } from "react-redux";
 
 import { toast, ToastContainer } from "react-toastify";
@@ -19,8 +24,8 @@ function Account() {
     const queryParams = new URLSearchParams(window.location.search);
     // const accout_id = queryParams.get("account_id");
     const public_key = queryParams.get("public_key");
-    if( public_key!= null){
-      dispatch(connectNearSuccessF(public_key))
+    if (public_key != null) {
+      dispatch(connectNearSuccessF(public_key));
     }
   }
   const notify = () => toast(blockchain.account);
@@ -75,7 +80,8 @@ function Account() {
                   Disconnect Metamask Wallet
                 </button>
               )}
-              <button
+              {blockchain.public_key == null ? (
+                <button
                   className="wallet-adapter-button wallet-adapter-button-trigger"
                   tabIndex="0"
                   type="button"
@@ -87,6 +93,21 @@ function Account() {
                 >
                   Connect Near Wallet
                 </button>
+              ) : (
+                <button
+                  className="wallet-adapter-button wallet-adapter-button-trigger"
+                  tabIndex="0"
+                  type="button"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    dispatch(connectNear());
+                    // getData();
+                  }}
+                >
+                  DisConnect Near Wallet
+                </button>
+              )}
+
               <div>
                 <div className="flex items-center p-5 justify-center">
                   <div className="w-1/2 ml-10 overflow-ellipsis"></div>

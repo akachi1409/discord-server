@@ -107,6 +107,7 @@ export const connectNearSuccessF = (public_key) =>{
       dispatch(connectNearSuccess({
         public_key: public_key
       }))
+      localStorage.setItem("public_key", public_key);
     }catch (e) {
       dispatch(connectNearFailed("Something went wrong"));
     }
