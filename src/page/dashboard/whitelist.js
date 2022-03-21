@@ -38,13 +38,16 @@ function Whitelist(props) {
     if (!role){
       notify("You need to get the certain role to be get whitelisted!")
     }
-    if (account == null || public_key == null) {
-      notify("You should connect your wallet to get whitelisted!");
-      return;
-    } else {
-      notify("You are submitting to whitelist with this account:" + account);
-      dispatch(addWhitelist(props));
+    else{
+      if (account == null || public_key == null) {
+        notify("You should connect your wallet to get whitelisted!");
+        return;
+      } else {
+        notify("You are submitting to whitelist with this account:" + account);
+        dispatch(addWhitelist(props));
+      }
     }
+    
   };
   const addRoleF = ()=>{
     console.log("---------")
