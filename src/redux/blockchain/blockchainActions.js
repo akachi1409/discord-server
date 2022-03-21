@@ -133,7 +133,7 @@ export const connectNearSuccessF = (public_key) =>{
   }
 }
 
-export const disconnectNear = () =>{
+export const disconnectNear = (props) =>{
   return async(dispatch) =>{
     dispatch(disconnectNearRequest());
     try {
@@ -142,6 +142,7 @@ export const disconnectNear = () =>{
           public_key:null
         }))
       localStorage.removeItem("public_key")
+      props.history.push("/account")
     }catch (e) {
       dispatch(disconnectNearFailure("Something went wrong"));
     }

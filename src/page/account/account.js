@@ -15,7 +15,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-function Account() {
+function Account(props) {
   const dispatch = useDispatch();
   const blockchain = useSelector((state) => state.blockchain);
   // const data = useSelector((state) => state.data);
@@ -28,6 +28,9 @@ function Account() {
     if (public_key != null) {
       dispatch(connectNearSuccessF(public_key));
     }
+  }
+  const disconnectF = ()=>{
+    dispatch(disconnectNear(props))
   }
   const notify = () => toast(blockchain.account);
   const notifyErr = (err) => toast(err);
@@ -101,7 +104,7 @@ function Account() {
                   type="button"
                   onClick={(e) => {
                     e.preventDefault();
-                    dispatch(disconnectNear());
+                    disconnectF();
                     // getData();
                   }}
                 >
