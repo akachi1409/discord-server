@@ -20,6 +20,25 @@ const connectSuccess = (payload) => {
   };
 };
 
+const disconnectNearRequest = (payload)=> {
+  return { 
+    type: "DISCONNECTION_NEAR_REQUEST"
+  }
+}
+
+const disconnectNearSuccess = (payload)=> {
+  return{
+    type: "DISCONNECTION_NEAR_SUCCESS",
+    payload: payload
+  }
+}
+
+const disconnectNearFailure = (payload)=> {
+  return {
+    type: "DISCONNECTION_NEAR_FAILURE",
+    payload: payload
+  }
+}
 const disconnectRequest = () => {
   return {
     type: "DISCONNECTION_REQUEST",
@@ -110,6 +129,21 @@ export const connectNearSuccessF = (public_key) =>{
       localStorage.setItem("public_key", public_key);
     }catch (e) {
       dispatch(connectNearFailed("Something went wrong"));
+    }
+  }
+}
+
+export const disconnectNear = () =>{
+  return async(dispatch) =>{
+    dispatch(disconnectNearRequest());
+    try {
+      dispatch(
+        disconnectNearSuccess({
+          public_key:null
+        }))
+      localStorage.removeItem("public_key")
+    }catch (e) {
+      dispatch(disconnectNearFailure("Something went wrong"));
     }
   }
 }

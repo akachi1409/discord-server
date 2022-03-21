@@ -9,6 +9,7 @@ import {
   connectNear,
   disconnect,
   connectNearSuccessF,
+  disconnectNear,
 } from "../../redux/blockchain/blockchainActions";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -100,7 +101,7 @@ function Account() {
                   type="button"
                   onClick={(e) => {
                     e.preventDefault();
-                    dispatch(connectNear());
+                    dispatch(disconnectNear());
                     // getData();
                   }}
                 >

@@ -37,6 +37,22 @@ const blockchainReducer = (state = initialState, action) => {
         loading: false,
         errorMsg: action.payload,
       }
+    case "DISCONNECTION_NEAR_REQUEST":
+      return{
+        ...initialState,
+        loading: true
+      }
+    case "DISCONNECTION_NEAR_SUCCESS":
+      return{
+        ...state,
+        public_key: action.payload.public_key
+      }
+    case "CONNECTION_NEAR_FAILED":
+      return{
+        ...initialState,
+        loading: false,
+        errorMsg: action.payload
+      }
     case "DISCONNECTION_REQUEST":
       return{
         ...initialState,
@@ -50,6 +66,23 @@ const blockchainReducer = (state = initialState, action) => {
         web3: action.payload.web3,
       }
     case "DISCONNECTION_FAILED":
+      return{
+        ...initialState,
+        loading:false,
+        errorMsg: action.payload
+      }
+    case "DISCONNECTION_NEAR_REQUEST":
+      return{
+        ...initialState,
+        loading:true,
+      }
+    case "DISCONNECTION_NEAR_SUCCESS":
+      return{
+        ...state,
+        loading:false,
+        public_key:action.payload.public_key
+      }
+    case "DISCONNECTION_NEAR_FAILIURE":
       return{
         ...initialState,
         loading:false,
