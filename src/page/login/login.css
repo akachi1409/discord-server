@@ -53,3 +53,7 @@
   background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
+.logo-img{
+  margin-top:4rem;
+}

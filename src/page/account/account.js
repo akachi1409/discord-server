@@ -52,10 +52,14 @@ function Account(props) {
   };
   useEffect(() => {
     setAccount(blockchain.account);
-    setPublicKey(blockchain.public_key);
+    console.log("account", account)
+    // setPublicKey(blockchain.public_key);
     // getData();
-  }, [blockchain]);
-
+  }, [blockchain.account]);
+  useEffect(() => {
+    setPublicKey(blockchain.public_key);
+    console.log("public key", publicKey)
+  }, [blockchain.public_key])
   return (
     <div>
       <div>
