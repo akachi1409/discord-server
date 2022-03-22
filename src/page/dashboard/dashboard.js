@@ -4,7 +4,7 @@ import Sidebar from "../../components/sidebar/sidebar";
 import { checkMember } from "../../redux/account/accountAction"
 import { useDispatch, useSelector } from "react-redux";
 import "./dashboard.css";
-function Dashboard() {
+function Dashboard(props) {
   const [firstLoad, setFirstLoad] = useState(true);
   const [whitelisted, setWhitelisted] = useState(false);
   const [isMember, setIsMember] = useState(false);
@@ -37,7 +37,7 @@ function Dashboard() {
   return (
     <div>
       <div>
-        <Sidebar />
+        <Sidebar props = {props}/>
       </div>
       <main className="sm:ml-64 md:ml-64 lg:ml-64">
         <div className="flex justify-end mx-10 my-5"></div>

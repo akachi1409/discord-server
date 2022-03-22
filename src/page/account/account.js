@@ -63,7 +63,7 @@ function Account(props) {
   return (
     <div>
       <div>
-        <Sidebar />
+        <Sidebar props = {props} />
       </div>
       <main className="sm:ml-64 md:ml-64 lg:ml-64">
         <div className="flex-1 font-mono">
