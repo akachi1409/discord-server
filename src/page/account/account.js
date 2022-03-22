@@ -32,6 +32,7 @@ function Account(props) {
     } else {
       var accountL = localStorage.getItem("account");
       var public_keyL = localStorage.getItem("public_key");
+      console.log("Account, " , accountL , "public: ", public_keyL)
       setAccount(accountL);
       setPublicKey(public_keyL);
     }
