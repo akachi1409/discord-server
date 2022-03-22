@@ -3,13 +3,17 @@ import React, { useState, useEffect } from "react";
 import Sidebar from "../../components/sidebar/sidebar";
 import { checkMember } from "../../redux/account/accountAction"
 import { useDispatch, useSelector } from "react-redux";
+
+
 import "./dashboard.css";
-function Dashboard(props) {
+function Dashboard() {
   const [firstLoad, setFirstLoad] = useState(true);
   const [whitelisted, setWhitelisted] = useState(false);
   const [isMember, setIsMember] = useState(false);
   const dispatch = useDispatch();
   const account = useSelector((state) => state.account);
+  
+
   const setRoleState = (roles) => {
     var flagW = false;
     roles.forEach((role) => {
@@ -37,7 +41,7 @@ function Dashboard(props) {
   return (
     <div>
       <div>
-        <Sidebar props = {props}/>
+        <Sidebar/>
       </div>
       <main className="sm:ml-64 md:ml-64 lg:ml-64">
         <div className="flex justify-end mx-10 my-5"></div>

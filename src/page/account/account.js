@@ -3,7 +3,6 @@ import "./account.css";
 
 import Sidebar from "../../components/sidebar/sidebar";
 
-import { fetchData } from "../../redux/data/dataActions";
 import {
   connect,
   connectNear,
@@ -12,6 +11,7 @@ import {
   disconnectNear,
 } from "../../redux/blockchain/blockchainActions";
 import { useDispatch, useSelector } from "react-redux";
+
 
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -63,7 +63,7 @@ function Account(props) {
   return (
     <div>
       <div>
-        <Sidebar props = {props} />
+        <Sidebar/>
       </div>
       <main className="sm:ml-64 md:ml-64 lg:ml-64">
         <div className="flex-1 font-mono">

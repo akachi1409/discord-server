@@ -2,16 +2,17 @@ import React, { useState } from "react";
 import "./sidebar.css";
 import { useDispatch } from "react-redux";
 // import { useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 import { logout } from "../../redux/account/accountAction";
-function Sidebar(props) {
+function Sidebar() {
   const dispatch = useDispatch();
-
+  const history = useHistory();
   const onDashboard = () =>{
-    props.history.push("/dashboard/mine")
+    history.push("/dashboard/mine")
   }
 
   const onAccount = () =>{
-    props.history.push("/account")
+    history.push("/account")
   }
   return (
     <div>

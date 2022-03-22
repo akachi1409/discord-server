@@ -69,7 +69,7 @@ function Whitelist(props) {
   return (
     <div>
       <div>
-        <Sidebar props = {props} />
+        <Sidebar/>
       </div>
       <main className="sm:ml-64 md:ml-64 lg:ml-64">
         <main className="flex-1 font-mono">
