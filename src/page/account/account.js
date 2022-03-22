@@ -44,7 +44,6 @@ function Account(props) {
   const notifyErr = (err) => toast(err);
   const getData = () => {
     if (blockchain.account !== "") {
-      dispatch(fetchData(blockchain.account));
       notify();
     }
     if (blockchain.errorMsg !== "") {
@@ -52,7 +51,9 @@ function Account(props) {
     }
   };
   useEffect(() => {
-    getData();
+    setAccount(blockchain.account);
+    setPublicKey(blockchain.public_key);
+    // getData();
   }, [blockchain]);
 
   return (
