@@ -245,6 +245,8 @@ export const login = (data, props) => {
                   localStorage.setItem("authUser", username);
                   localStorage.setItem("isMember", isMember);
                   localStorage.setItem("role", state_role);
+                  localStorage.removeItem("account");
+                  localStorage.removeItem("public_key")
                   props.history.push("/account");
                 });
             });
