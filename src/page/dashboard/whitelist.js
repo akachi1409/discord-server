@@ -49,10 +49,10 @@ function Whitelist(props) {
     }
     
   };
-  const addRoleF = ()=>{
-    console.log("---------")
-    dispatch(addRole())
-  }
+  // const addRoleF = ()=>{
+  //   console.log("---------")
+  //   dispatch(addRole())
+  // }
   if (firstLoad) {
     setFirstLoad(false);
     const _role = localStorage.getItem("role");

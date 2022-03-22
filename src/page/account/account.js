@@ -18,6 +18,8 @@ import "react-toastify/dist/ReactToastify.css";
 function Account(props) {
   const dispatch = useDispatch();
   const blockchain = useSelector((state) => state.blockchain);
+  const [ account, setAccount] = useState("");
+  const [ publicKey, setPublicKey] = useState("");
   // const data = useSelector((state) => state.data);
   const [firstLoad, setFirstLoad] = useState(true);
   if (firstLoad) {
@@ -27,11 +29,16 @@ function Account(props) {
     const public_key = queryParams.get("public_key");
     if (public_key != null) {
       dispatch(connectNearSuccessF(public_key));
+    } else {
+      var accountL = localStorage.getItem("account");
+      var public_keyL = localStorage.getItem("public_key");
+      setAccount(accountL);
+      setPublicKey(public_keyL);
     }
   }
-  const disconnectF = ()=>{
-    dispatch(disconnectNear(props))
-  }
+  const disconnectF = () => {
+    dispatch(disconnectNear(props));
+  };
   const notify = () => toast(blockchain.account);
   const notifyErr = (err) => toast(err);
   const getData = () => {
@@ -57,7 +64,7 @@ function Account(props) {
           <div className="flex flex-col py-6">
             <div className="mx-auto px-4 sm:px-6 md:px-8">Account</div>
             <div>
-              {blockchain.account == null ? (
+              {account == null ? (
                 <button
                   className="wallet-adapter-button wallet-adapter-button-trigger"
                   tabIndex="0"
@@ -84,7 +91,7 @@ function Account(props) {
                   Disconnect Metamask Wallet
                 </button>
               )}
-              {blockchain.public_key == null ? (
+              {publicKey == null ? (
                 <button
                   className="wallet-adapter-button wallet-adapter-button-trigger"
                   tabIndex="0"
