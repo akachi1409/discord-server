@@ -24,7 +24,7 @@ function Login() {
           <div className="flex text-4xl items-center flex-shrink-0 px-4 text-black justify-center">
             ENIGMA v1.0
           </div>
-          <div className="flex justify-center text-xs text-black">
+          <div className="flex justify-center text-sm text-black">
             By NEARverse Labs
           </div>
         </div>
