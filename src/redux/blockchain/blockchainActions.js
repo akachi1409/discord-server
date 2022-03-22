@@ -158,6 +158,7 @@ export const disconnect = () => {
           web3: null,
         })
       );
+      localStorage.removeItem("account");
     } catch (e) {
       dispatch(disconnectFailed("Something went wrong."));
     }
