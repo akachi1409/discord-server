@@ -74,7 +74,7 @@ function Other() {
                       <a
                         href="/dashboard/other"
                         target="_blank" rel="noreferrer noopener"
-                        className="border-indigo-500 text-indigo-600 dark:text-indigo-300 whitespace-nowrap flex py-4 px-1 border-b-2 font-medium text-sm"
+                        className="border-indigo-500 dark:text-indigo-300 whitespace-nowrap flex py-4 px-1 border-b-2 font-medium text-sm"
                         aria-current="page"
                       >
                         Other Projects

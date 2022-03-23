@@ -4,30 +4,48 @@ import { useDispatch } from "react-redux";
 // import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { logout } from "../../redux/account/accountAction";
+import Logo from "../../assets/logo/black.png";
+
 function Sidebar() {
   const dispatch = useDispatch();
   const history = useHistory();
-  const onDashboard = () =>{
-    history.push("/dashboard/mine")
-  }
+  const onDashboard = () => {
+    history.push("/dashboard/mine");
+  };
 
-  const onAccount = () =>{
-    history.push("/account")
-  }
+  const onAccount = () => {
+    history.push("/account");
+  };
   return (
     <div>
       <div className="hidden md:flex md:w-64 md:flex-col md:fixed md:inset-y-0">
         <div className="flex-1 flex flex-col min-h-0 bg-black text-black dark:bg-gray-800 dark:text-white">
           <div className="flex-1 flex flex-col pt-5 pb-4 overflow-y-auto">
-            <div className="flex text-2xl items-center flex-shrink-0 px-4 text-white btn-gradient-1 justify-center">
-              Mercury
+            <div className="flex-1 flex flex-row">
+              <img
+                srcSet={Logo}
+                src={Logo}
+                decoding="async"
+                data-nimg="fill"
+                className="logo-img"
+              />
             </div>
-            <div className="flex justify-center text-xs text-white">
-              Powered by Blocksmith Labs
+            <div className="flex-1 flex flex-col">
+              <div className="flex-1 justify-center text-lg text-white">
+                ENIGMA v1.0
+              </div>
+              <div className="flex justify-center text-xs text-white">
+                By NEARverse Labs
+              </div>
             </div>
+
             <nav className="mt-10 flex-1 px-2 space-y-1">
-              {localStorage.getItem("sidebar") === "dashboard-mine" || localStorage.getItem("sidebar") === "dashboard-other"? (
-                <div onClick={()=>onDashboard()} className="bg-gray-900 text-white group flex items-center px-2 py-2 mt-2 text-sm font-medium rounded-md cursor-pointer">
+              {localStorage.getItem("sidebar") === "dashboard-mine" ||
+              localStorage.getItem("sidebar") === "dashboard-other" ? (
+                <div
+                  onClick={() => onDashboard()}
+                  className="bg-gray-900 text-white group flex items-center px-2 py-2 mt-2 text-sm font-medium rounded-md cursor-pointer"
+                >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -46,7 +64,10 @@ function Sidebar() {
                   <a>Dashboard</a>
                 </div>
               ) : (
-                <div onClick={()=>onDashboard()} className="text-gray-300 hover:bg-gray-700 mt-2 hover:text-white group flex items-center px-2 py-2 mt-2 text-sm font-medium rounded-md cursor-pointer">
+                <div
+                  onClick={() => onDashboard()}
+                  className="text-gray-300 hover:bg-gray-700 mt-2 hover:text-white group flex items-center px-2 py-2 mt-2 text-sm font-medium rounded-md cursor-pointer"
+                >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -66,7 +87,10 @@ function Sidebar() {
                 </div>
               )}
               {localStorage.getItem("sidebar") === "account" ? (
-                <div onClick={()=>onAccount()} className="bg-gray-900 text-white group flex items-center px-2 py-2 mt-2 text-sm font-medium rounded-md cursor-pointer">
+                <div
+                  onClick={() => onAccount()}
+                  className="bg-gray-900 text-white group flex items-center px-2 py-2 mt-2 text-sm font-medium rounded-md cursor-pointer"
+                >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -85,7 +109,10 @@ function Sidebar() {
                   <a>Account</a>
                 </div>
               ) : (
-                <div  onClick={()=>onAccount()} className="text-gray-300 hover:bg-gray-700 mt-2 hover:text-white group flex items-center px-2 py-2 mt-2 text-sm font-medium rounded-md cursor-pointer">
+                <div
+                  onClick={() => onAccount()}
+                  className="text-gray-300 hover:bg-gray-700 mt-2 hover:text-white group flex items-center px-2 py-2 mt-2 text-sm font-medium rounded-md cursor-pointer"
+                >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -146,7 +173,10 @@ function Sidebar() {
                   </div>
                   {/* <p className="text-xs font-medium text-white">#4652</p> */}
                 </div>
-                <div className="h-6 w-6 text-white inline ml-1 mt-1 cursor-pointer ml-10 logout-icon cursor-pointer" onClick={dispatch(logout)}>
+                <div
+                  className="h-6 w-6 text-white inline ml-1 mt-1 cursor-pointer ml-10 logout-icon cursor-pointer"
+                  onClick={dispatch(logout)}
+                >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
