@@ -121,7 +121,7 @@ function Account(props) {
                     // getData();
                   }}
                 >
-                  DisConnect Near Wallet
+                  Disconnect Near Wallet
                 </button>
               )}
 
