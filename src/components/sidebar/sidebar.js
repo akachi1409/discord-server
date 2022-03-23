@@ -17,7 +17,7 @@ function Sidebar() {
   return (
     <div>
       <div className="hidden md:flex md:w-64 md:flex-col md:fixed md:inset-y-0">
-        <div className="flex-1 flex flex-col min-h-0 bg-gray-800 text-black dark:bg-gray-800 dark:text-white">
+        <div className="flex-1 flex flex-col min-h-0 bg-black text-black dark:bg-gray-800 dark:text-white">
           <div className="flex-1 flex flex-col pt-5 pb-4 overflow-y-auto">
             <div className="flex text-2xl items-center flex-shrink-0 px-4 text-white btn-gradient-1 justify-center">
               Mercury

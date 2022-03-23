@@ -11,7 +11,8 @@
     padding: 0 15px!important;
 }
 .wallet-adapter-button-trigger {
-    background-image: linear-gradient(135deg,#cb5eee,#4be1ec);
+    /* background-image: linear-gradient(135deg,#cb5eee,#4be1ec); */
+    background-color: black;
 }
 .wallet-adapter-button {
     background-color: transparent;

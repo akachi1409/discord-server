@@ -15,7 +15,7 @@ function Dashboard() {
   const history = useHistory();
 
   const onWhitelist = () =>{
-    history.push("/dashboard/other")
+    history.push("/dashboard/whitelist")
   }
 
   const setRoleState = (roles) => {
