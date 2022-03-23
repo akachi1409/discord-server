@@ -25,13 +25,13 @@ function Sidebar() {
               <img
                 srcSet={Logo}
                 src={Logo}
-                className="logo-img"
+                className="white-logo-img"
               />
               <div className="flex-1 flex flex-col">
-                <div className="flex-1 justify-center text-lg text-white">
+                <div className="justify-center text-lg text-white">
                   ENIGMA v1.0
                 </div>
-                <div className="flex-1 justify-center text-xs text-white">
+                <div className="justify-center text-xs text-white">
                   By NEARverse Labs
                 </div>
               </div>
