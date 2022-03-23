@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 // import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { logout } from "../../redux/account/accountAction";
-import Logo from "../../assets/logo/black.png";
+import Logo from "../../assets/logo/white.png";
 
 function Sidebar() {
   const dispatch = useDispatch();
@@ -25,8 +25,6 @@ function Sidebar() {
               <img
                 srcSet={Logo}
                 src={Logo}
-                decoding="async"
-                data-nimg="fill"
                 className="logo-img"
               />
               <div className="flex-1 flex flex-col">
