@@ -39,7 +39,7 @@ function Whitelist(props) {
       notify("You need to get the certain role to be get whitelisted!")
     }
     else{
-      if (account == null || public_key == null) {
+      if (account == null && public_key == null) {
         notify("You should connect your wallet to get whitelisted!");
         return;
       } else {
