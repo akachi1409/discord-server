@@ -15,7 +15,7 @@ function Dashboard() {
   const history = useHistory();
 
   const onWhitelist = () =>{
-    history.push("/dashboard/mine")
+    history.push("/dashboard/other")
   }
 
   const setRoleState = (roles) => {
@@ -173,7 +173,7 @@ function Dashboard() {
                         onClick={() => onWhitelist()} 
                         className="w-0 flex-1 flex flex-col relative -mr-px w-0 flex-1 inline-flex items-center justify-center py-4 text-sm text-gray-500 hover:text-gray-600 border border-transparent rounded-bl-lg hover:text-gray-500 cursor-pointer">
                           <a
-                            className="w-46 mx-2  flex justify-center py-2 px-4 border-transparent rounded-md text-sm font-medium text-white text-gradient-1"
+                            className="w-46 mx-2  flex justify-center py-2 px-4 border-transparent rounded-md text-sm font-medium text-white bg-black"
                             
                           >
                             Obtain Whitelist
