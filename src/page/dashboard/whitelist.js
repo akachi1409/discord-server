@@ -34,7 +34,7 @@ function Whitelist(props) {
   const addwhitelistF = () => {
     var account = localStorage.getItem("account");
     var public_key = localStorage.getItem("public_key")
-    console.log("account", account);
+    console.log("account", account, public_key);
     if (!role){
       notify("You need to get the certain role to be get whitelisted!")
     }
